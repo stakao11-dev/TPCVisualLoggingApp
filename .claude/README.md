@@ -63,7 +63,7 @@ settings.json は JSON なのでコメントを書けません。ルールを変
 
 | ルール | 意味・理由 |
 |---|---|
-| `docs/03_reference/source/**` の Edit / Write | 原本の PDF マニュアルです。変換の元になるので書き換えを禁止しています |
+| `docs/03_reference/*/source/**` の Edit / Write | 原本の PDF マニュアルです（`*` は製品ごとのフォルダ）。変換の元になるので書き換えを禁止しています |
 | `git push --force` / `-f` | リモートの履歴が壊れます |
 | `git reset --hard` / `git clean` | まだコミットしていない作業が消え、元に戻せません |
 | `rm -rf` | まとめて削除する操作で、元に戻せません |
