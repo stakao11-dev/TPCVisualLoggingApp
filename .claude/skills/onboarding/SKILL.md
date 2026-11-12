@@ -10,7 +10,7 @@ TPCVisualLoggingApp に新しく参加する開発者が、初日に読んで作
 
 ## 出力先
 
-- `docs/00_onboarding/onboarding.md`（既にあれば読んでから更新する。人が手で書き足した部分は消さずに残す）
+- `docs/00_onboarding/onboarding_dev.md`（既にあれば読んでから更新する。人が手で書き足した部分は消さずに残す）
 - 画像や補足が増えたら同じフォルダに置く
 
 ## docs/ の構成と、この資料の役割
