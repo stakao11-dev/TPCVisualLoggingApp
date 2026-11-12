@@ -84,7 +84,7 @@ Visual Studio 2019 のエディションやワークロード、.NET Framework �
 | [AGENTS.md](../../AGENTS.md) / [CLAUDE.md](../../CLAUDE.md) | AI エージェント（Claude Code など）向けの作業ルールです。CLAUDE.md は AGENTS.md を読み込むだけです |
 | [.claude/settings.json](../../.claude/settings.json) | Claude Code の権限設定です（チームで共有します） |
 | [.claude/README.md](../../.claude/README.md) | 権限設定の意味と理由の説明です |
-| [.claude/skills/](../../.claude/skills/) | Claude Code の skill です（この資料を作る `/onboarding-dev` など） |
+| [.claude/skills/](../../.claude/skills/) | Claude Code の skill です（この資料を作る `/onboarding-dev`、営業向け資料を作る `/onboarding-sales` など） |
 | [scripts/build.ps1](../../scripts/build.ps1) | VS2019 の MSBuild でビルドするスクリプトです |
 | [scripts/convert_pdf.py](../../scripts/convert_pdf.py) | PDF マニュアルを Markdown に変換するスクリプトです |
 | [scripts/extract_vba.py](../../scripts/extract_vba.py) | Excel ファイル（TPC-Excel など）から VBA のソースコードを取り出すスクリプトです |
