@@ -1,7 +1,7 @@
 # TPCVisualLoggingApp オンボーディング
 
 - 最終更新日: 2026-11-12
-- この資料は Claude Code の `/onboarding` skill（[SKILL.md](../../.claude/skills/onboarding/SKILL.md)）で生成・更新しています。手で書き足した部分は、次に更新するときも残ります。
+- この資料は Claude Code の `/onboarding-dev` skill（[SKILL.md](../../.claude/skills/onboarding-dev/SKILL.md)）で生成・更新しています。手で書き足した部分は、次に更新するときも残ります。
 - 「未整備」と書いた章は、リポジトリにまだ情報がない部分です。分かる方は追記してください。
 
 新しく参加した方は、まずこの資料を上から読んでください。詳しい内容は、それぞれの資料へのリンクから読めます。
@@ -84,7 +84,7 @@ Visual Studio 2019 のエディションやワークロード、.NET Framework �
 | [AGENTS.md](../../AGENTS.md) / [CLAUDE.md](../../CLAUDE.md) | AI エージェント（Claude Code など）向けの作業ルールです。CLAUDE.md は AGENTS.md を読み込むだけです |
 | [.claude/settings.json](../../.claude/settings.json) | Claude Code の権限設定です（チームで共有します） |
 | [.claude/README.md](../../.claude/README.md) | 権限設定の意味と理由の説明です |
-| [.claude/skills/](../../.claude/skills/) | Claude Code の skill です（この資料を作る `/onboarding` など） |
+| [.claude/skills/](../../.claude/skills/) | Claude Code の skill です（この資料を作る `/onboarding-dev` など） |
 | [scripts/build.ps1](../../scripts/build.ps1) | VS2019 の MSBuild でビルドするスクリプトです |
 | [scripts/convert_pdf.py](../../scripts/convert_pdf.py) | PDF マニュアルを Markdown に変換するスクリプトです |
 | [scripts/extract_vba.py](../../scripts/extract_vba.py) | Excel ファイル（TPC-Excel など）から VBA のソースコードを取り出すスクリプトです |
