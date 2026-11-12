@@ -13,6 +13,7 @@
 *.ps1       text eol=crlf
 *.bat       text eol=crlf
 *.cmd       text eol=crlf
+*.bas       text eol=crlf
 
 # シェルスクリプトは LF に固定する
 *.sh        text eol=lf
@@ -30,3 +31,8 @@
 *.zip       binary
 *.snk       binary
 *.pfx       binary
+*.xls       binary
+*.xlt       binary
+*.xlsx      binary
+*.xlsm      binary
+*.xltm      binary
