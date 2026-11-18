@@ -84,7 +84,7 @@ Visual Studio 2019 のエディションやワークロード、.NET Framework �
 | [AGENTS.md](../../AGENTS.md) / [CLAUDE.md](../../CLAUDE.md) | AI エージェント（Claude Code など）向けの作業ルールです。CLAUDE.md は AGENTS.md を読み込むだけです |
 | [.claude/settings.json](../../.claude/settings.json) | Claude Code の権限設定です（チームで共有します） |
 | [.claude/README.md](../../.claude/README.md) | 権限設定の意味と理由の説明です |
-| [.claude/skills/](../../.claude/skills/) | Claude Code の skill です（この資料を作る `/onboarding-dev`、営業向け資料を作る `/onboarding-sales` など） |
+| [.claude/skills/](../../.claude/skills/) | Claude Code の skill です（この資料を作る `/onboarding-dev`、営業向け資料を作る `/onboarding-sales`、PDF マニュアルを変換する `/convert-manual`） |
 | [scripts/build.ps1](../../scripts/build.ps1) | VS2019 の MSBuild でビルドするスクリプトです |
 | [scripts/convert_pdf.py](../../scripts/convert_pdf.py) | PDF マニュアルを Markdown に変換するスクリプトです |
 | [scripts/extract_vba.py](../../scripts/extract_vba.py) | Excel ファイル（TPC-Excel など）から VBA のソースコードを取り出すスクリプトです |
@@ -125,7 +125,9 @@ exe を実行すると実機と通信します。必ず [2 章](#2-最初に知�
 .\.venv\Scripts\python scripts\convert_pdf.py <pdf> --reconvert   # キャッシュを使わず解析し直す
 ```
 
-結果は、PDF と同じ製品フォルダの `converted/` に出力されます（例: `docs/03_reference/rtmc64/converted/`）。図の書き起こし（`figures.yaml`）と崩れた表の手修正（`tables.yaml`）は、人が書きます。
+結果は、PDF と同じ製品フォルダの `converted/` に出力されます（例: `docs/03_reference/rtmc64/converted/`）。図の書き起こし（`figures.yaml`）と崩れた表の手修正（`tables.yaml`）は、スクリプトでは作れません。
+
+Claude Code で `/convert-manual <pdf>` を実行すると、変換から `figures.yaml` と `tables.yaml` の作成、変換し直しての確認までを Claude が行います（[SKILL.md](../../.claude/skills/convert-manual/SKILL.md)）。書き起こした内容は、最後に人が確認してください。
 
 ### TPC-Excel の VBA の取り出し
 
