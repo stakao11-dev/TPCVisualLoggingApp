@@ -10,6 +10,7 @@
 |---|---|---|
 | [discussions/](discussions/) | 論点ごとの検討メモ。案の比較、未決事項、調べたこと | 自由。[テンプレート](discussions/_template.md)あり |
 | [decisions/](decisions/) | 決めたことの記録（ADR）。背景、決定、却下した案と理由 | [テンプレート](decisions/_template.md)に沿って短く |
+| [backlog.md](backlog.md) | 今は入れないが、将来入れたい機能の候補 | 表に 1 行ずつ足す。書き方はファイルの中にあります |
 
 ファイル名は次のようにします。
 
