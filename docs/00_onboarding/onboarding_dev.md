@@ -50,7 +50,9 @@ TPCVisualLoggingApp は、C# で作る Windows アプリケーションです。
 | PLMC-M3EX | 横河電機の PLC「FA-M3R」専用のオープンモーションコントローラです。MECHATROLINK-Ⅲ を使います |
 | SLM8000 | 標準ワンボードモーションコントローラです。AS710 コントローラボードを使い、PC とはイーサネットか RS-232C でつなぎます |
 
-このうち **SLM8000 は、設計のときに常に 2 番目に置く機種** です（[バックログ B-003](../02_design/backlog.md)）。第 1 段階で作るのは RTMC64-EC 用だけですが、インターフェース・構造体・クラスなどを決めるときは、あとで SLM8000 にも対応できるかを確かめてください。RTMC64-EC との違いは [slm8000/sdk.md](../03_reference/slm8000/sdk.md)「RTMC64-EC との違い」にまとめています。
+このうち **SLM8000 は設計のときに常に 2 番目に置く機種、PLMC-M3EX は 3 番目に置く機種** です（[バックログ B-003、B-004](../02_design/backlog.md)）。第 1 段階で作るのは RTMC64-EC 用だけですが、インターフェース・構造体・クラスなどを決めるときは、あとでこの 2 機種にも対応できるかを確かめてください。
+
+機種ごとの違いは [slm8000/sdk.md](../03_reference/slm8000/sdk.md) と [plmcm3ex/sdk.md](../03_reference/plmcm3ex/sdk.md) の比較表にまとめています。とくに、PLMC-M3EX には 64ch ロギングがなく、記録できる位置は 2 つ（指令位置か機械位置）だけです。機種によって記録できるものが違う前提で作ってください。
 
 関係者（体制）は **未整備** です（企画書でも TBD です）。
 
@@ -96,7 +98,7 @@ Visual Studio 2019 のエディションやワークロード、.NET Framework �
    `requirements.txt` はまだありません。上のパッケージは [convert_pdf.py](../../scripts/convert_pdf.py) と [extract_vba.py](../../scripts/extract_vba.py) の import から調べたものです。
 3. RTMC64 のソフトウェアパッケージ（通信ライブラリの本体、ヘッダーなど）を、`docs/03_reference/rtmc64/sdk/` の下に置きます。購入した人だけが入手できるものなので、Git には入っていません。置き方は [sdk.md](../03_reference/rtmc64/sdk.md) を読んでください。
    アプリが対応するのは、パッケージ V310A（通信ライブラリの DLL 1.9.0.0）以降です（[ADR-003](../02_design/decisions/ADR-003_supported-versions.md)）。
-   SLM8000 のパッケージも同じように `docs/03_reference/slm8000/sdk/` の下に置きます（[slm8000/sdk.md](../03_reference/slm8000/sdk.md)）。PLMC-M3EX のパッケージの置き方の説明は **未整備** です。
+   SLM8000 と PLMC-M3EX のパッケージも同じように、`docs/03_reference/slm8000/sdk/`、`docs/03_reference/plmcm3ex/sdk/` の下に置きます（[slm8000/sdk.md](../03_reference/slm8000/sdk.md)、[plmcm3ex/sdk.md](../03_reference/plmcm3ex/sdk.md)）。
 
 ## 4. リポジトリの構成
 
@@ -231,7 +233,7 @@ TPC-Excel のマクロにはパスワードがかかっていますが、ソー�
 | ★ [ADR-001](../02_design/decisions/ADR-001_phase1-scope.md) | 第 1 段階の機能範囲（RTMC64-EC だけ、spec を 001〜003 に分ける、リアルタイム表示は入れない） |
 | [ADR-002](../02_design/decisions/ADR-002_tpcexcel-maintenance.md) | TPC-Excel の保守（Office 2024 で動かす修正）は別のリポジトリで行い、計算は変えない |
 | [ADR-003](../02_design/decisions/ADR-003_supported-versions.md) | 対応する製品ソフトウェアの版（開発時の最新版以降。RTMC64-EC は V310A、DLL 1.9.0.0 以降） |
-| [backlog.md](../02_design/backlog.md) | 今は入れないが、将来入れたい機能の候補（リアルタイム表示、RTMC64-M3 への対応、SLM8000 への対応） |
+| [backlog.md](../02_design/backlog.md) | 今は入れないが、将来入れたい機能の候補（リアルタイム表示、RTMC64-M3・SLM8000・PLMC-M3EX への対応） |
 
 ### 03_reference: 製品ごとのマニュアル
 
@@ -240,7 +242,7 @@ TPC-Excel のマクロにはパスワードがかかっていますが、ソー�
 | フォルダ | 製品 | 状態 |
 |---|---|---|
 | [rtmc64/](../03_reference/rtmc64/) | RTMC64-M3 / RTMC64-EC | 原本 PDF と Markdown 版（9 冊）、ソフトウェアパッケージの説明（[sdk.md](../03_reference/rtmc64/sdk.md)） |
-| [plmcm3ex/](../03_reference/plmcm3ex/) | PLMC-M3EX | 原本 PDF のみ |
+| [plmcm3ex/](../03_reference/plmcm3ex/) | PLMC-M3EX | 原本 PDF と、ソフトウェアパッケージの説明（[sdk.md](../03_reference/plmcm3ex/sdk.md)）。Markdown 版はまだありません |
 | [slm8000/](../03_reference/slm8000/) | SLM8000 | 原本 PDF と Markdown 版（TPC ロギングに関わる 6 冊）、ソフトウェアパッケージの説明（[sdk.md](../03_reference/slm8000/sdk.md)） |
 | [tpcexcel/](../03_reference/tpcexcel/) | TPC-Excel（解析ツール） | 原本（説明書 PDF、Excel 本体、サンプル CSV）と、取り出した VBA ソース |
 
@@ -279,6 +281,8 @@ TPC-Excel のマクロにはパスワードがかかっていますが、ソー�
 #### plmcm3ex: PLMC-M3EX のマニュアル
 
 原本の PDF は [source/](../03_reference/plmcm3ex/source/) にあります。Markdown 版はまだありません。
+
+ソフトウェアパッケージ（V2.4.0A）を調べて分かったことは、★ [sdk.md](../03_reference/plmcm3ex/sdk.md) にまとめています。TPC ロギングで記録できるもの（64ch がなく 2ch だけ）、制御周期の取得（`plm3exdrv.ini`）、FA-M3R のパソコンリンク経由のつなぎ方、RTMC64-EC・SLM8000 との違いの表などです。
 
 | 番号 | 名前 | 内容 |
 |---|---|---|
