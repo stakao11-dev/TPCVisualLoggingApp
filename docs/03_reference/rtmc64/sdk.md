@@ -60,6 +60,25 @@ RTMC64 のソフトウェアパッケージ（通信ライブラリの本体、�
 | 読み出しの流れ（手本） | 設定（REQ_TPCSEL_EX）→ 開始（REQ_TPCLOG = 1）→ 別スレッドで、状態（DAT_TPCINFO_EX）を読んでバッファにある分を全部読み出す、を一定の間隔（既定 0.05 秒）でくり返す。読み出した大きさが 1 点の大きさで割り切れなければ異常とする。止める指示をしていないのにロギングが止まっていたら、バッファが一杯になったと判断する | `McMain.py` の `start_tpc`、`__fetch_tpc_data` |
 | 32 ビットと 64 ビット | 通信ライブラリは両方ある。アプリをどちらで作るかは `/speckit-plan` で決める | `devlp/Lib-Com/` |
 
+## 通信設定ファイル（rt64ecdrv.ini）
+
+2026-11-19 に Shunsuke から聞いた情報です。
+
+- `rt64ecdrv.ini` に、コントローラとの通信設定が書かれている。セッティング PC と ROMSW 設定ソフトは、この通信設定を参照している。
+- このアプリも同じファイルを参照すれば、セッティング PC などと同じコントローラにつなげる。
+- ini の中身は内部設計なので、マニュアルには載っていないことがある。SLM8000 も同じ設計（`slm8000drv.ini`、[slm8000/sdk.md](../slm8000/sdk.md)）。
+
+パッケージで分かったこと（キーの名前だけ。値は写さない）:
+
+| セクション | 主なキー | 根拠 |
+|---|---|---|
+| `[Communication]` | `CommType`、`NodeName`、`IpAddr`、`IpAddrHis0`、`RsErrLogFile`、`LogFileMaxSz` など | パッケージ直下の `rt64ecdrv.ini`、Python のラッパー `pyrt64ec/McIniParser.py` |
+| `[Program]` | `RTCTime`（ラッパーの説明は「制御サンプリング周期(μsec)」、500～4000）、`EnableAxisL/H`、`DNCStartSize` など | 同上 |
+| `[Task0]`～`[Task7]`、`[Other]`、`[I/O Port]`、`[Option]` | タスクごとの設定など | 同上 |
+
+- 通信ライブラリの接続の設定（構造体 `SXDEF`）には、通信の種類（`fComType`）と INtime のノード名（`pNodeName`）がある（`Rt64eccom64apiCSNET.cs`）。ini の `CommType`、`NodeName` から作ると考えられるが、対応は確かめていない。
+- RTMC64-EC の制御周期は `DAT_CYCLETIME` で読める（上の表）。ini の `RTCTime` と同じ値かは確かめていない。
+
 ## DLL の置き方（パッケージのポリシー）
 
 2026-11-19 に Shunsuke から聞いた情報です。
