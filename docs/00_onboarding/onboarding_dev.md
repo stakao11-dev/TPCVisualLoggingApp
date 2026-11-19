@@ -56,7 +56,7 @@ TPCVisualLoggingApp は、C# で作る Windows アプリケーションです。
 | Visual Studio 2019 | C# のビルド。MSBuild（16.x）を使います | [build.ps1](../../scripts/build.ps1) が VS2019 の MSBuild を探します |
 | Git | バージョン管理 | — |
 | Python 3.12 | PDF マニュアルを Markdown に変換するツールと、TPC-Excel から VBA を取り出すツール用です。アプリの開発だけなら不要です | 開発者の手元にある `.venv` が Python 3.12 です |
-| RTMC64 の通信ライブラリ | アプリから RTMC64 と通信します | インストール方法は [通信ライブラリリファレンス](../03_reference/rtmc64/converted/TB00-1043.md)「6. インストール」 |
+| RTMC64 の通信ライブラリ | アプリから RTMC64 と通信します | インストールはしません。レジストリや環境変数を変えないポリシーのパッケージで、DLL を exe と同じフォルダに置いて使います（[sdk.md](../03_reference/rtmc64/sdk.md)「DLL の置き方」） |
 
 Visual Studio 2019 のエディションやワークロード、.NET Framework のバージョンは **未整備** です（ソリューション `.sln` がまだリポジトリにありません）。
 
