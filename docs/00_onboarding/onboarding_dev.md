@@ -205,7 +205,7 @@ TPC-Excel のマクロにはパスワードがかかっていますが、ソー�
 | [01_project/](../01_project/) | プロジェクトの背景・会議資料 | 企画書（ドラフト）あり。会議資料はまだありません |
 | [specs/](../../specs/)（`docs/` の外） | 確定した仕様 | 置き場だけ用意。仕様はまだありません |
 | [02_design/](../02_design/) | 仕様の検討中の資料（検討メモと ADR）。**確定した仕様ではありません** | 検討メモ 1 件、ADR 3 件、バックログあり |
-| [03_reference/](../03_reference/) | 製品ごとのマニュアル | 3 製品の原本の PDF と、TPC-Excel 一式あり。Markdown 版は RTMC64 の 9 冊、SLM8000 の 6 冊、TPC-Excel 説明書 |
+| [03_reference/](../03_reference/) | 製品ごとのマニュアル | 3 製品の原本の PDF と、TPC-Excel 一式あり。Markdown 版は RTMC64 の 9 冊、SLM8000 の 6 冊、PLMC-M3EX の 6 冊、TPC-Excel 説明書 |
 | `04_dev/` | コーディング規約などの開発ガイド | **未整備**（作る予定） |
 
 ### 01_project: プロジェクトの背景
@@ -242,7 +242,7 @@ TPC-Excel のマクロにはパスワードがかかっていますが、ソー�
 | フォルダ | 製品 | 状態 |
 |---|---|---|
 | [rtmc64/](../03_reference/rtmc64/) | RTMC64-M3 / RTMC64-EC | 原本 PDF と Markdown 版（9 冊）、ソフトウェアパッケージの説明（[sdk.md](../03_reference/rtmc64/sdk.md)） |
-| [plmcm3ex/](../03_reference/plmcm3ex/) | PLMC-M3EX | 原本 PDF と、ソフトウェアパッケージの説明（[sdk.md](../03_reference/plmcm3ex/sdk.md)）。Markdown 版はまだありません |
+| [plmcm3ex/](../03_reference/plmcm3ex/) | PLMC-M3EX | 原本 PDF と、Markdown 版（TPC ロギングに関わる 6 冊）、ソフトウェアパッケージの説明（[sdk.md](../03_reference/plmcm3ex/sdk.md)） |
 | [slm8000/](../03_reference/slm8000/) | SLM8000 | 原本 PDF と Markdown 版（TPC ロギングに関わる 6 冊）、ソフトウェアパッケージの説明（[sdk.md](../03_reference/slm8000/sdk.md)） |
 | [tpcexcel/](../03_reference/tpcexcel/) | TPC-Excel（解析ツール） | 原本（説明書 PDF、Excel 本体、サンプル CSV）と、取り出した VBA ソース |
 
@@ -280,19 +280,19 @@ TPC-Excel のマクロにはパスワードがかかっていますが、ソー�
 
 #### plmcm3ex: PLMC-M3EX のマニュアル
 
-原本の PDF は [source/](../03_reference/plmcm3ex/source/) にあります。Markdown 版はまだありません。
+原本の PDF は [source/](../03_reference/plmcm3ex/source/) にあります。TPC ロギングに関わるものだけ、Markdown に変換して [converted/](../03_reference/plmcm3ex/converted/) に置いています。★ は、RTMC64-EC との違いを確かめるために最初に読むものです。
 
 ソフトウェアパッケージ（V2.4.0A）を調べて分かったことは、★ [sdk.md](../03_reference/plmcm3ex/sdk.md) にまとめています。TPC ロギングで記録できるもの（64ch がなく 2ch だけ）、制御周期の取得（`plm3exdrv.ini`）、FA-M3R のパソコンリンク経由のつなぎ方、RTMC64-EC・SLM8000 との違いの表などです。
 
-| 番号 | 名前 | 内容 |
-|---|---|---|
-| ★ TB00-0983 | 通信ライブラリ リファレンスマニュアル（PLM3EX-COMNT） | アプリから PLMC-M3EX と通信する DLL の関数仕様です |
-| ★ TB00-0984 | 送受信データ説明書 | 通信でやり取りするデータの形式です |
-| TB00-0980 | ユーザーズマニュアル（導入編・ハードウェア編・機能編・試運転・調整編・メンテナンス編など） | PLMC-M3EX 全体の説明です。初めての方は「導入編」（TB00-0980A）で全体像をつかめます |
-| TB00-0981 | セッティング PC マニュアル | 設定用 PC ソフトの使い方です |
-| TB00-0982 | ROMSW 設定ソフト ユーザーズマニュアル | ユーザー設定パラメータ（ROMSW）を設定するソフトです |
-| TB00-0985 | テクノコード仕様テキストプログラム変換ライブラリ（PLM3EX-TCNV） | テクノコードの運転プログラムを変換するライブラリです |
-| TB00-0986 | G コード仕様テキストプログラム変換ライブラリ（PLM3EX-GCNV） | G コードの運転プログラムを変換するライブラリです |
+| 番号 | 名前 | 内容 | Markdown 版 |
+|---|---|---|---|
+| ★ TB00-0983 | 通信ライブラリ リファレンスマニュアル（PLM3EX-COMNT） | アプリから PLMC-M3EX と通信する DLL の関数仕様です。FA-M3R のパソコンリンク経由の接続の設定と、バイトの並びの変換（`DatEndianChange`）もここにあります | [あり](../03_reference/plmcm3ex/converted/TB00-0983.md) |
+| ★ TB00-0984 | 送受信データ説明書 | 通信でやり取りするデータの形式です。TPC ロギングのコマンドは 4-1-15、4-1-16、4-1-23 と 4-2-41、4-2-51、4-2-55 にあります | [あり](../03_reference/plmcm3ex/converted/TB00-0984.md) |
+| TB00-0981 | セッティング PC マニュアル | 設定用 PC ソフトの使い方です。TPC ロギング画面（5-2-8-2）と制御周期モニタ（5-2-8-8）があります | [あり](../03_reference/plmcm3ex/converted/TB00-0981.md) |
+| TB00-0982 | ROMSW 設定ソフト ユーザーズマニュアル | ユーザー設定パラメータ（ROMSW）を設定するソフトです。サーボ制御周期の設定（4-1-1）があります | [あり](../03_reference/plmcm3ex/converted/TB00-0982.md) |
+| TB00-0980 | ユーザーズマニュアル（導入編・ハードウェア編・機能編・試運転・調整編・メンテナンス編など） | PLMC-M3EX 全体の説明です。初めての方は「導入編」（TB00-0980A）で全体像をつかめます | 一部あり: [TB00-0980D](../03_reference/plmcm3ex/converted/TB00-0980D.md)（機能編 1～2 章）、[TB00-0980I](../03_reference/plmcm3ex/converted/TB00-0980I.md)（試運転・調整編 7-12～7-15。TPC による精度チェックを含む） |
+| TB00-0985 | テクノコード仕様テキストプログラム変換ライブラリ（PLM3EX-TCNV） | テクノコードの運転プログラムを変換するライブラリです | なし |
+| TB00-0986 | G コード仕様テキストプログラム変換ライブラリ（PLM3EX-GCNV） | G コードの運転プログラムを変換するライブラリです | なし |
 
 #### slm8000: SLM8000 のマニュアル
 
