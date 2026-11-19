@@ -89,6 +89,8 @@ Visual Studio 2019 のエディションやワークロード、.NET Framework �
 | [scripts/convert_pdf.py](../../scripts/convert_pdf.py) | PDF マニュアルを Markdown に変換するスクリプトです |
 | [scripts/extract_vba.py](../../scripts/extract_vba.py) | Excel ファイル（TPC-Excel など）から VBA のソースコードを取り出すスクリプトです |
 | [docs/](../) | ドキュメントです（[8 章](#8-資料の読み方)） |
+| [specs/](../../specs/) | 確定した仕様です（Spec Kit で機能ごとに作ります） |
+| [.specify/](../../.specify/) | Spec Kit の設定・テンプレートと、プロジェクトの原則（[constitution.md](../../.specify/memory/constitution.md)）です |
 | [.gitignore](../../.gitignore) / [.gitattributes](../../.gitattributes) | Git の除外設定と改行コードの設定です |
 
 C# のソースコードは **未整備** です（まだリポジトリにありません）。
@@ -172,7 +174,7 @@ TPC-Excel のマクロにはパスワードがかかっていますが、ソー�
 |---|---|---|
 | `00_onboarding/` | この資料 | — |
 | [01_project/](../01_project/) | プロジェクトの背景・会議資料 | 企画書（ドラフト）あり。会議資料はまだありません |
-| `02_spec/` | 要件・仕様 | **未整備** |
+| [02_design/](../02_design/) | 仕様の検討中の資料（検討メモと ADR）。**確定した仕様ではありません**。確定した仕様は [specs/](../../specs/) にあります | 置き場と書き方だけ用意。資料はまだありません |
 | [03_reference/](../03_reference/) | 製品ごとのマニュアル | 3 製品の原本の PDF と、TPC-Excel 一式あり。Markdown 版は RTMC64 の 2 冊だけ |
 | `04_dev/` | コーディング規約などの開発ガイド | **未整備**（作る予定） |
 

@@ -26,7 +26,8 @@ TPCVisualLoggingApp を初めて担当する営業担当者が、**お客様に�
 
 - `docs/01_project/proposal.md`（企画書）— 概要、背景（TPC ロギング・TPC-Excel・課題）、目的、想定する利用者、ユースケース、進め方、開発の範囲、リスク、決まっていないこと。**この資料の主な情報源**
 - `docs/01_project/` のほかの文書 — 会議資料などで決定事項が更新されていないか
-- `docs/02_spec/` — あれば、決まった要件・仕様（企画書の「案」が確定したかどうかの確認に使う）
+- `specs/` — あれば、確定した仕様（各機能フォルダの `spec.md`。`Status` が `Approved` のものだけを「決まったこと」として扱う）。企画書の「案」が確定したかどうかの確認に使う
+- `docs/02_design/decisions/` — あれば、決定の記録（ADR）。`docs/02_design/discussions/` は検討中なので「決まったこと」として扱わない
 - `docs/03_reference/` — 対象製品（フォルダ名）と、TPC-Excel の説明書（`tpcexcel/`）。製品の正式名称や対応機種は PDF / Markdown から確認する
 - `git log --oneline -30` — 最近どこまで進んだか（企画段階か、開発中か、リリース済みか）
 
