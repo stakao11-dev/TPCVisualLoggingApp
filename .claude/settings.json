@@ -73,8 +73,8 @@
     "deny": [
       "Edit(./docs/03_reference/*/source/**)",
       "Write(./docs/03_reference/*/source/**)",
-      "Edit(./docs/03_reference/*/sdk/*/**)",
-      "Write(./docs/03_reference/*/sdk/*/**)",
+      "Edit(./docs/03_reference/*/sdk/**)",
+      "Write(./docs/03_reference/*/sdk/**)",
 
       "Bash(git push --force:*)",
       "Bash(git push -f:*)",

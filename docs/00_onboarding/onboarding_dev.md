@@ -74,7 +74,7 @@ Visual Studio 2019 のエディションやワークロード、.NET Framework �
    .\.venv\Scripts\pip install docling pypdfium2 PyYAML olefile
    ```
    `requirements.txt` はまだありません。上のパッケージは [convert_pdf.py](../../scripts/convert_pdf.py) と [extract_vba.py](../../scripts/extract_vba.py) の import から調べたものです。
-3. RTMC64 のソフトウェアパッケージ（通信ライブラリの本体、ヘッダーなど）を、`docs/03_reference/rtmc64/sdk/` の下に置きます。購入した人だけが入手できるものなので、Git には入っていません。置き方は [sdk/README.md](../03_reference/rtmc64/sdk/README.md) を読んでください。
+3. RTMC64 のソフトウェアパッケージ（通信ライブラリの本体、ヘッダーなど）を、`docs/03_reference/rtmc64/sdk/` の下に置きます。購入した人だけが入手できるものなので、Git には入っていません。置き方は [sdk.md](../03_reference/rtmc64/sdk.md) を読んでください。
 
 ## 4. リポジトリの構成
 

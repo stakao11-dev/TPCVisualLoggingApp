@@ -64,7 +64,7 @@ settings.json は JSON なのでコメントを書けません。ルールを変
 | ルール | 意味・理由 |
 |---|---|
 | `docs/03_reference/*/source/**` の Edit / Write | 原本の PDF マニュアルです（`*` は製品ごとのフォルダ）。変換の元になるので書き換えを禁止しています |
-| `docs/03_reference/*/sdk/*/**` の Edit / Write | 製品のソフトウェアパッケージ（ライブラリ本体、ヘッダーなど）です。購入した人だけが入手できる原本なので、書き換えを禁止しています。Git にも入れません（`.gitignore`）。置き場所の説明の `sdk/README.md` は、対象から外しています |
+| `docs/03_reference/*/sdk/**` の Edit / Write | 製品のソフトウェアパッケージ（ライブラリ本体、ヘッダーなど）です。購入した人だけが入手できる原本なので、書き換えを禁止しています。Git にも入れません（`.gitignore`）。置き場所の説明は、`sdk/` の外の `sdk.md`（例: `docs/03_reference/rtmc64/sdk.md`）に置きます |
 | `git push --force` / `-f` | リモートの履歴が壊れます |
 | `git reset --hard` / `git clean` | まだコミットしていない作業が消え、元に戻せません |
 | `rm -rf` | まとめて削除する操作で、元に戻せません |
