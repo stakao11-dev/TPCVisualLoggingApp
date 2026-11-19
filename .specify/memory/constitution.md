@@ -1,50 +1,118 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# TPCVisualLoggingApp Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. 実機の安全を最優先する（NON-NEGOTIABLE）
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+- コマンドを次の 2 つに分けて扱う。
+  - **ロギングのコマンド**: TPC ロギングの設定・開始・停止・再開と、データ・状態の読み出し
+    （REQ_TPCSEL / REQ_TPCSEL_EX、REQ_TPCLOG、DAT_TPCINFO / DAT_TPCINFO_EX、DAT_TPCDATA など）。
+  - **運転の指令**: 軸を動かす指令、入出力を変える指令、パラメータを書き換えるコマンドなど、
+    装置の状態を変えるもの。
+- 第 1 段階（最初のリリース）では、運転の指令を送ってはならない。
+- 運転の指令を送る機能は、ユースケースによっては将来追加してよい（例: 解析に合った動作を
+  自動で生成して実行する）。その場合は、次をすべて満たさなければならない。
+  - 機能ごとに ADR を書き、spec.md に「安全」の節を設けて、送る指令、動く範囲、起こりうる
+    危険と、下の各項目をどう満たすかを書く。
+  - 指令を送る前に、毎回、注意を促す警告と、送る指令の内容（動く軸、移動量、速度など）を
+    画面に表示し、利用者がその都度はっきり承認した場合にだけ送る。承認を省略する設定や、
+    承認を覚えておく仕組みを作ってはならない。
+  - 自動で生成した指令も、送る前に上と同じ表示と承認を経る。
+  - 実行中は運転中であることを画面に分かりやすく表示し、利用者がいつでも止められる操作を
+    常に用意する。
+  - 警告と承認の処理を通らずに指令を送る経路を作ってはならない。指令の送信は 1 つの部品に
+    集め、そこで承認を確かめる。この確認が働くことを自動テストで確かめる。
+  - 送った指令と承認の記録（日時、内容）を残す。
+- 自動テストは実機なしで実行できなければならない。通信ライブラリ（DLL）の呼び出しは
+  インターフェイスの裏に隠し、テストではモックやファイルから読んだデータに差し替える。
+- 実機とつなぐテストや exe の実行は、人が装置の状態と周りの安全を確かめてから行う。
+  AI エージェントは、確認なしにこれらを実行してはならない。
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+理由: 開発機も客先の装置も実機のコントローラにつながっており、誤ったコマンドで装置が動くと
+人や機械に危害が及ぶおそれがある。運転の指令を送る機能は効果が大きい一方、注意の漏れが
+そのまま事故につながるため、表示と承認を機能ごとの判断に任せず、ここで必須とする。
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. TPC-Excel と計算結果をそろえる
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+- TPC-Excel から引き継ぐ解析（サーボ応答精度、真円精度、直線精度）は、TPC-Excel の
+  VBA ソース（`docs/03_reference/tpcexcel/converted/`）と同じ計算式で実装する。
+- TPC-Excel に付属するサンプルデータを両方で解析し、結果が一致することを自動テストで確かめる。
+  許容する誤差は、解析ごとに spec.md に数値で書く。
+- TPC-Excel と同じ形式の CSV（1 行 1 点、2 列）を読み込めるようにする。
+- 計算を TPC-Excel から意図して変える場合（自動で中心を求める、など）は、TPC-Excel と同じ
+  結果を出す方法も残すか、違いを spec.md と画面の両方に明示する。
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+理由: TPC-Excel の利用者が移行するとき、結果の食い違いは不信につながる。
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. 取得・表示・解析を分け、追加しやすく作る
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- データの取得（通信）、データの保持、表示、解析を別々の部品に分ける。部品どうしは
+  インターフェイスを通してだけやり取りする。
+- 新しい解析は、既存の解析や取得・表示の部品を書き換えずに追加できなければならない。
+- 製品ごとの違い（RTMC64-M3 / -EC、PLMC-M3EX、SLM8000 の通信ライブラリとデータ形式）は、
+  製品ごとの取得部品に閉じ込める。解析と表示は製品を意識しない。
+- 解析は UI に依存しない純粋な計算として作り、単体テストで確かめる。
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+理由: ユースケースを確かめながら解析と対応製品を増やしていく計画だから。
+
+### IV. 記録したデータを欠けさせず、欠けたら隠さない
+
+- ロギング中はバッファの使用量を見ながら読み出し、バッファが一杯になってロギングが
+  止まらないようにする。
+- ロギングが止まったとき、データが欠けたとき、読み出しが失敗したときは、画面で利用者に
+  知らせ、どこが欠けたかを記録に残す。
+- 欠けたデータを、利用者に知らせずに補間したり捨てたりしてはならない。
+
+理由: TPC ロギングの価値は「制御と完全に同期した記録」であり、欠けを隠すと解析の結論を誤らせる。
+
+### V. 確定した仕様と確かめたユースケースだけを作る
+
+- 実装は、`specs/` にある確定した仕様（`spec.md` の Status が `Approved` で `develop` に
+  マージ済みのもの）と、この constitution だけを根拠にする。`docs/02_design/` の検討中の資料を
+  根拠にしてはならない。
+- 新しいユースケースは、企画書 6 章の進め方でユーザーの声を確かめてから仕様にする。
+  仮説の段階のものは、試作として明示した範囲でだけ作る。
+- 仕様にない機能を「ついでに」追加しない（YAGNI）。
+
+理由: 作り手の思い込みで機能を作り、使われないことを防ぐ。
+
+## 技術的な制約
+
+- C# の Windows アプリケーションとして、Visual Studio 2019（MSBuild 16.x）で開発する。
+  ビルドは `scripts/build.ps1` で行う。
+- 対象の .NET Framework のバージョンは未定（TODO(DOTNET_VERSION): ソリューション作成時に決める）。
+- Microsoft Excel がなくても動作しなければならない。
+- コントローラとは、テクノの通信ライブラリ（DLL）を通してだけやり取りする。
+- Windows はリアルタイム OS ではないため、読み出しの遅れを前提に設計する（原則 IV）。
+- 改行コードと文字コードは `.gitattributes` とオンボーディング資料の決まりに従う。
+- 原本の資料（`docs/03_reference/*/source/`）は書き換えない。
+
+## 開発の進め方
+
+- 仕様は `docs/02_design/`（検討）→ ADR → `specs/NNN-機能名/`（確定）の順に作る。
+  流れの詳細は `docs/02_design/README.md` にある。
+- 仕様が確定した機能は、`/speckit-plan` → `/speckit-tasks` → `/speckit-analyze` →
+  `/speckit-implement` の順に進める。
+- `/speckit-plan` の Constitution Check で、各原則に反していないことを確かめる。反する設計が
+  必要な場合は、plan.md の Complexity Tracking に理由を書き、レビューで承認を得る。
+- 解析の計算（原則 II、III）と、データの欠けの扱い（原則 IV）には、自動テストを必ず付ける。
+- 日々の開発は `develop` ブランチで行う。コミットメッセージは日本語で 1 行、
+  「何を、どうしたか」を書く。
+- AI エージェントは `AGENTS.md` と `.claude/settings.json` の権限設定に従う。
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- この constitution は、ほかの開発ルールや資料より優先する。食い違いがあれば、
+  この constitution に合わせて他方を直す。
+- 改定するときは、`docs/02_design/decisions/` に ADR を書き、`/speckit-constitution` で
+  改定してプルリクエストで `develop` にマージする。
+- バージョンはセマンティックバージョニングに従う。
+  - MAJOR: 原則の削除や、意味を変える書き直し（原則 I の安全の条件を緩める場合を含む）
+  - MINOR: 原則や節の追加、内容の大きな拡充
+  - PATCH: 言い回しの修正、誤字の修正、意味を変えない明確化
+- 仕様・計画・タスクのレビューと `/speckit-analyze` では、この constitution に
+  沿っているかを確かめる。
+- 日々の作業の細かなルールは `AGENTS.md` とオンボーディング資料
+  （`docs/00_onboarding/onboarding_dev.md`）に書く。
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-11-19 | **Last Amended**: 2026-11-19
