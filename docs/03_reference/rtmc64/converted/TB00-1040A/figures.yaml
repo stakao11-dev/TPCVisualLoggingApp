@@ -1,0 +1,793 @@
+# TB00-1040A（RTMC64 ユーザーズマニュアル Ⅰ 導入編）の図の書き起こし
+# scripts/convert_pdf.py が変換時に、各図の直下へ「図の内容」として差し込む。
+# キー: 画像ファイル名 (image_NNNNNN_<hash>.png) のハッシュ値の先頭 8 桁
+#
+# - この冊の図の多くは、INtime・Windows・設定ソフトの画面のスクリーンショット。赤丸や番号で示された操作箇所と、
+#   読める表示を中心に書いた。縮小されて小さい文字は「（判読できず）」とした。
+# - 見出しの [M] は RTMC64-M3、[R] は RTMC64-EC（RSI-ECAT-Master）、[A] は RTMC64-EC（AlgoEtherCAT）の手順。
+
+cbff0c14:
+  alt: 注意を促す亀の絵
+
+a2498022:
+  alt: 2 出荷表の見方
+  text: |
+    「出荷表」の各欄の説明:
+    - 「御社/ディーラ」→ 宛先の欄（○○様）
+    - 「オーダNO.」「ソフトバージョン」の欄 →「オーダNO. TH00-□□□□□（問い合わせ時に必要）」
+    - 「ハードウェア」「付属品」「ソフトウェア」「オプション」の各行 →「員数/オプションを確認!」
+
+29073a0f:
+  alt: 注意を促す亀の絵（【重要1】シリアルナンバー）
+
+3387a716:
+  alt: 注意を促す亀の絵（【重要2】ソフトウェアバージョン）
+
+866afbaa:
+  alt: 2-2 マニュアル「RTMC64-M3/EC ユーザーズマニュアル」の絵
+
+824258f9:
+  alt: 2-2 マニュアル「セッティングPCマニュアル」の絵
+
+eaf4d7d7:
+  alt: 2-2 マニュアル「ROMSW設定マニュアル」の絵
+
+38ebe261:
+  alt: 2-2 マニュアル「RTMC64-M3/EC サンプルラダープログラム説明書」の絵
+
+231c8cef:
+  alt: 3 RTMC64-M3/EC のシステム構成
+  text: |
+    - **FAPC**: 「Windows」の「各種操作 状態モニタ」「PCアプリ」→「通信DLL ※1」。「INtime」の「RTMC64」（軸制御、入出力制御）→「M/E通信 ※2」（MECHATROLINK-Ⅲ [M3] ／ EtherCAT [EC]）→「サーボモータ」「入出力ユニット」。「INtime」の「ユーザ制御ソフト(PLC)」は「共有メモリ」を経て RTMC64 とつながる
+    - **別PC**: 「Windows」の「PCアプリ」→「通信DLL」→「イーサネット ◆1.3」で FAPC の RTMC64 へ
+    - 凡例: 青枠は「テクノ処理」
+
+5ee34130:
+  alt: 3-1 RT64M3 Installer
+  text: |
+    ダイアログ「RT64M3 Installer」。「インストールするフォルダを設定して下さい。」、フォルダ「c:¥Rt64m3」、ボタン: 参照、OK、キャンセル。
+
+45ab82f0:
+  alt: 3-4 タスクトレイの INtime アイコン
+  text: |
+    タスクトレイの隠れたアイコン。INtime のアイコン（黄色）が赤丸で囲まれている。
+
+2b5da342:
+  alt: 3-4 INtime のメニュー（INtime Configuration）
+  text: |
+    INtime のアイコンを右クリックしたメニューで、「INtime Configuration(C)」が赤丸で囲まれている。ほかの項目: Start NodeA、Stop NodeA（灰色）、Restart NodeA、イベントビューワ(V)、INtime Explorer(E)、イベント通知表示(S)、常駐アイコン自動起動(A)、INtimeバージョン情報(B)、終了(X)。
+
+a3ffdad1:
+  alt: 3-4 INtime Configuration Panel（Node Management）
+  text: |
+    「INtime Configuration Panel」画面。「設定する INtime コンポーネントを選択してください(S)」の中の「Node Management」が赤丸で囲まれている。ほかに Miscellaneous、License Manager、INtime Device Manager。ボタン: 設定エクスポート(E)、設定インポート(I)、終了(E)、ヘルプ(H)。
+
+8efee3cc:
+  alt: 3-4 INtime Node Management（ブートモード設定）
+  text: |
+    「INtime Node Management」画面。① 「System Wide」タブ、② 「Windows 相互接続」のブートモードの値「専有(Dedicated)」が赤丸で囲まれている。
+    ほかの設定値は小さくて判読できず。
+
+8f04b0f8:
+  alt: 3-4 INtime Node Management（カーネルメモリ設定）
+  text: |
+    「INtime Node Management」画面。① 「Kernel」タブ、② カーネルメモリ（MB）の値、③ カーネルティック（us）の値が赤丸で囲まれている。本文: カーネルメモリ：64MB以上。
+    値は小さくて判読できず。
+
+bda39750:
+  alt: 3-5 INtime Configuration Panel（INtime Device Manager）
+  text: |
+    「INtime Configuration Panel」画面で、「INtime Device Manager」が赤丸で囲まれている。
+
+93dc63ce:
+  alt: 3-5 INtime Device Manager（MECHATROLINK-Ⅲ ボードを INtime へ移す・IRQあり）
+  text: |
+    「INtime Device Manager」画面。「MECHATROLINK-Ⅲ」の下のボードを右クリックしたメニューで、「INtimeへ移す(IRQあり)(E)」が赤丸で囲まれている。右側に割り込み（IRQ）ごとのデバイスの一覧（INtime YASKAWA MECHATROLINK-Ⅲ Adapter PCI Board NT112 など）。
+    細部は小さくて判読しにくい。
+
+b22e2037:
+  alt: 3-5 INtime Device Manager（INtime へ移す・IRQあり、別の例）
+  text: |
+    前の図と同じ画面で、「INtimeへ移す(IRQあり)」が赤丸で囲まれている。本文: INtime6.* の場合は右枠に"INtime G8 MECHATROLINK…"と表示される。
+
+9d467b02:
+  alt: 3-5 INtime Device Manager（INtime へ移す・IRQなし/MSI）
+  text: |
+    同じ画面で、メニューの「INtimeへ移す(IRQなし/MSI)(M)」が赤丸で囲まれている。
+
+713d5128:
+  alt: 3-5 INtime Device Manager（INtime へ移す・IRQなし/MSI、別の例）
+  text: |
+    同じ画面で、メニューの「INtimeへ移す(IRQなし/MSI)」が赤丸で囲まれている。
+
+c748952e:
+  alt: 3-5 INtime Device Manager（デバイス設定情報の保存）
+  text: |
+    「INtime Device Manager」のツールバーの「!」ボタン（ツールチップ「デバイス設定情報の保存」）が赤丸で囲まれている。
+
+07ecc16e:
+  alt: 見出し「3-6. 自動起動の設定 [M]」
+
+52977ff5:
+  alt: 3-6-1 INtime Node Management（Auto Load）
+  text: |
+    「INtime Node Management」画面。③ 「Auto Load」タブ、④ 「追加」ボタンが赤丸で囲まれている。一覧には iWin32、Legacy Network、Network、SpinDoctor、USB などのアプリケーションがある。
+
+5fc1deed:
+  alt: 3-6-1 Auto Load アプリケーション設定（RTMC64M3）
+  text: |
+    ダイアログ「Auto Load アプリケーション設定」。
+    - アプリケーション名(T): RTMC64M3
+    - 参照先(F)フルパス指定: C:¥RT64M3¥flash¥RT64M3.rta（参照(B)）
+    - 実行時引数(P): （空）
+    - チェック: 有効(E)、INIT(初期化完了)待機(I)、ユーザログイン待機(U)。「高度な設定(V)」ボタン
+    - 依存関係(N): iWin32（追加(A)、削除(D)）
+    - ボタン: OK、キャンセル(C)、ヘルプ(H)
+
+58666120:
+  alt: 3-6-1 認証デーモンのアイコン
+  text: |
+    タスクトレイの隠れたアイコン。認証デーモンのアイコン（青）が赤丸で囲まれている。上部に「116 KB」の表示。
+
+9a3297dc:
+  alt: 3-1 RT64EC Installer
+  text: |
+    ダイアログ「RT64EC Installer」。「インストールするフォルダを設定して下さい。」、フォルダ「c:¥Rt64ec」、ボタン: 参照、OK、キャンセル。
+
+f068b48a:
+  alt: 3-4 タスクトレイの INtime アイコン（[R]）
+  text: |
+    タスクトレイの隠れたアイコン。INtime のアイコン（黄色）が赤丸で囲まれている。
+
+f66d6f73:
+  alt: 3-4 INtime のメニュー（INtime Configuration、[R]）
+  text: |
+    INtime のメニューで「INtime Configuration(C)」が赤丸で囲まれている。
+
+01b57b48:
+  alt: 3-4 INtime Configuration Panel（Node Management、[R]）
+  text: |
+    「INtime Configuration Panel」画面。① 「Node Management」が赤丸で囲まれている。
+
+ef6c0a48:
+  alt: 3-4 INtime Node Management（ブートモード設定、[R]）
+  text: |
+    ① 「System Wide」タブ、② ブートモードの値「専有(Dedicated)」が赤丸で囲まれている。
+
+e3ddb88b:
+  alt: 3-4 INtime Node Management（カーネル設定、[R]）
+  text: |
+    ① 「Kernel」タブ、② カーネルメモリの値、③ カーネルティックの値が赤丸で囲まれている。値は小さくて判読できず。
+
+0a9cac6b:
+  alt: 3-6 INpass（INtime Network Pass tool）
+  text: |
+    ウィンドウ「INpass - INtime Network Pass tool」。「Welcome to INpass tool.」「This tool performs the followings operations: 1. Searching available network devices(NICs) for INtime use 2. (Option) Pass a NIC device to INtime/Windows control 3. (Option) Pass a NIC device to INtime/Windows control and configuring the NIC device for INtime/Windows TCP/IP stack」。右下の次へ（▶）ボタンが赤丸で囲まれている。
+
+130cc339:
+  alt: 3-6 INpass（NIC の選択）
+  text: |
+    「The following NIC device(s) is/are available for INtime use. You can continue to setup INtime Networking with the selected device. Please select one of the devices in the list and click [ > ] or exit this program with [ x ]」。一覧（Device Name / Controller）の「Control: Windows」の下の「Intel PRO/1000 Adapter (82574 L)」（Windows）が赤丸で囲まれている。
+
+2cb50145:
+  alt: 3-6 INpass（EtherCAT の選択）
+  text: |
+    「Please select one of network types(protocols) and input following information.」。選択肢「EtherCAT」（赤丸で囲み、選択中）と「Realtime TCP/IP(Network)」（DHCP / Static IP、IP v4・Netmask・Gateway は 0.0.0.0 で灰色）。
+
+69d95f56:
+  alt: 3-6 タスクトレイの INtime アイコン
+  text: |
+    タスクトレイの隠れたアイコン。① INtime のアイコン（黄色）が赤丸で囲まれている。
+
+2727ac99:
+  alt: 3-6 INtime のメニュー（INtime Configuration）
+  text: |
+    INtime のメニューで ② 「INtime Configuration(C)」が赤丸で囲まれている。
+
+8af7bb7a:
+  alt: INtime Configuration Panel（INtime Device Manager）
+  text: |
+    「INtime Configuration Panel」画面。① 「INtime Device Manager」が赤丸で囲まれている。
+
+d4e4f992:
+  alt: INtime Device Manager（NIC を INtime へ移す・IRQなし/MSI）
+  text: |
+    「INtime Device Manager」画面。「ネットワーク アダプター」の下の「Intel(R) PRO/1000 GT Desktop Adapter #3」を右クリックしたメニューで、「INtimeへ移す(IRQなし/MSI)(M)」が赤丸で囲まれている。ほかの項目: Windowsへ移す(W)、INtimeへ移す(IRQあり)(E)、"Windowsへ移す"をキャンセル(W)、"INtimeへ移す"をキャンセル(E)、名称変更(R)、プロパティ(P)。
+
+9a4a06ec:
+  alt: INtime Device Manager（NIC を INtime へ移す・IRQあり）
+  text: |
+    同じ画面で、メニューの「INtimeへ移す(IRQあり)(E)」が赤丸で囲まれている。
+
+febc2b56:
+  alt: INtime Device Manager（デバイス設定情報の保存）
+  text: |
+    ツールバーの「!」ボタン（ツールチップ「デバイス設定情報の保存」）が赤丸で囲まれている。
+
+2ce8df6a:
+  alt: INtime Device Manager（INtime へのパス完了後）
+  text: |
+    「INtime devices」→「NodeA」→「ネットワーク アダプター」の下に「INtime Intel(R) PRO/1000 GT Desktop Adapter #3」が表示されている。
+
+3c46b670:
+  alt: 3-7 スタートメニューの ecatmkpa.ini
+  text: |
+    スタートメニューの「Micronet」→「RSI-ECAT」→「INI Files」→「NodeA」の下の ① 「ecatmkpa.ini」（ツールチップ「RSI-ECAT-Master INI File」）が赤丸で囲まれている。ほかに Documentation、Sample Pr…、Tools。
+
+2f1c560a:
+  alt: 3-7 タスクトレイの INtime アイコン
+  text: |
+    タスクトレイの隠れたアイコン。① INtime のアイコン（黄色）が赤丸で囲まれている。
+
+6c328eea:
+  alt: 3-7 INtime Configuration Panel（Node Management）
+  text: |
+    「INtime Configuration Panel」画面。① 「Node Management」が赤丸で囲まれている。
+
+e1efcfe9:
+  alt: 3-7 INtime のメニュー（INtime Configuration）
+  text: |
+    INtime のメニューで ② 「INtime Configuration(C)」が赤丸で囲まれている。
+
+1b5ac477:
+  alt: 3-7 INtime Node Management（Auto Load の RSI-ECAT）
+  text: |
+    「INtime Node Management」画面。「Auto Load」タブ（赤丸で囲み）の一覧で、「RSI-ECAT」の行（C:¥Program Files¥Micronet¥RSI-ECAT¥bin¥… .rta）が赤丸で囲まれ、③ 「編集」ボタンが赤丸で囲まれている。ほかの行のパスは小さくて判読できず。
+
+694005de:
+  alt: 3-7 Auto Load アプリケーション設定（RSI-ECAT）
+  text: |
+    ダイアログ「Auto Load アプリケーション設定」。
+    - アプリケーション名(T): RSI-ECAT
+    - 参照先(F)フルパス指定: C:¥Program Files¥Micronet¥RSI-ECAT¥bin¥RtEcHdr.rta
+    - 実行時引数(P): -cycle=eni（赤丸で囲み）
+    - チェック: 有効(E)、INIT(初期化完了)待機(I)、ユーザログイン待機(U)
+    - 依存関係(N): （空）
+
+67752f11:
+  alt: 3-7 INtime Node Management（System Wide のパス設定）
+  text: |
+    「INtime Node Management」画面。③ 「System Wide」タブ、④ 設定値「C:¥Program Files¥Micronet¥RSI-ECAT¥bin」が入った行が赤丸で囲まれている。ほかの設定は小さくて判読できず。
+
+a13c3b02:
+  alt: 見出し「3-8. ENIファイル作成 [R]」
+
+06e21c68:
+  alt: 見出し「3-9. 自動起動の設定 [R]」
+
+fa4ee936:
+  alt: 3-9-1 INtime Node Management（Auto Load の追加）
+  text: |
+    「INtime Node Management」画面。③ 「Auto Load」タブ、④ 「追加」ボタンが赤丸で囲まれている。
+
+92452f80:
+  alt: 3-9-1 Auto Load アプリケーション設定（RTMC64-EC）
+  text: |
+    ダイアログ「Auto Load アプリケーション設定」。
+    - アプリケーション名(T): RTMC64-EC
+    - 参照先(F)フルパス指定: C:¥RTEC¥flash¥RTEC.rta
+    - 実行時引数(P): （空）
+    - チェック: 有効(E)、INIT(初期化完了)待機(I)、ユーザログイン待機(U)
+    - 依存関係(N): iWin32、RSI-ECAT
+
+e7858b4a:
+  alt: 3-9-1 認証デーモンのアイコン
+  text: |
+    タスクトレイの隠れたアイコン。認証デーモンのアイコン（青）が赤丸で囲まれている。
+
+aa1ecd56:
+  alt: 3-1 RT64EC Installer（[A]）
+  text: |
+    ダイアログ「RT64EC Installer」。「インストールするフォルダを設定して下さい。」、フォルダ「c:¥Rt64ec」、ボタン: 参照、OK、キャンセル。
+
+acffacf7:
+  alt: 3-4 タスクトレイの INtime アイコン（[A]）
+  text: |
+    タスクトレイの隠れたアイコン。INtime のアイコン（黄色）が赤丸で囲まれている。
+
+4d97197f:
+  alt: 3-4 INtime のメニュー（INtime Configuration、[A]）
+  text: |
+    INtime のメニューで「INtime Configuration(C)」が赤丸で囲まれている。
+
+895c78ba:
+  alt: INtime Configuration Panel（Node Management）
+  text: |
+    「INtime Configuration Panel」画面。① 「Node Management」が赤丸で囲まれている。
+
+d32a256b:
+  alt: 3-4 INtime Node Management（ブートモード設定、[A]）
+  text: |
+    ① 「System Wide」タブ、② ブートモードの値「専有(Dedicated)」が赤丸で囲まれている。
+
+b67ba946:
+  alt: 3-4 INtime Node Management（カーネル設定、[A]）
+  text: |
+    ① 「Kernel」タブ、② カーネルメモリの値、③ カーネルティックの値が赤丸で囲まれている。値は小さくて判読できず。
+
+147a7913:
+  alt: 3-4 INtime Node Management（System Wide のパス設定、[A]）
+  text: |
+    ③ 「System Wide」タブ、④ 設定値「C:¥Program Files¥ALGOSYSTEM¥AlgoEtherCAT」が入った行が赤丸で囲まれている。
+
+85b29dd9:
+  alt: 3-5 タスクトレイの INtime アイコン（[A]）
+  text: |
+    タスクトレイの隠れたアイコン。① INtime のアイコン（黄色）が赤丸で囲まれている。
+
+ddf1aabf:
+  alt: 3-5 INtime Configuration Panel（INtime Device Manager、[A]）
+  text: |
+    「INtime Configuration Panel」画面。① 「INtime Device Manager」が赤丸で囲まれている。
+
+4a059874:
+  alt: 3-5 INtime のメニュー（INtime Configuration、[A]）
+  text: |
+    INtime のメニューで ② 「INtime Configuration(C)」が赤丸で囲まれている。
+
+bb890bb8:
+  alt: 3-5 INtime Device Manager（NIC を INtime へ移す・IRQなし/MSI、[A]）
+  text: |
+    「ネットワーク アダプター」の下の「Intel(R) PRO/1000 GT Desktop Adapter #3」を右クリックしたメニューで、「INtimeへ移す(IRQなし/MSI)(M)」が赤丸で囲まれている。
+
+ce31cd5f:
+  alt: 3-5 INtime Device Manager（デバイス設定情報の保存、[A]）
+  text: |
+    ツールバーの「!」ボタン（ツールチップ「デバイス設定情報の保存」）が赤丸で囲まれている。
+
+8f14df0d:
+  alt: 3-5 INtime Device Manager（INtime へのパス完了後、[A]）
+  text: |
+    「INtime devices」→「NodeA」→「ネットワーク アダプター」の下に「INtime Intel(R) PRO/1000 GT Desktop Adapter #3」が表示されている。
+
+f5dad6e9:
+  alt: 見出し「3-6. NICと通信周期の設定 [A]」
+
+4264d1e3:
+  alt: 3-6 ACMst.ini の設定（[A]）
+  text: |
+    メモ帳で開いた「ACMst.ini」。赤丸と番号で示された箇所:
+    - (1) `[MASTER]` の `InstanceNum=1`（矢印で (2) の `[BOARD_1]` を指す）
+    - (2) `[BOARD_1]` の `BusCycleTime=1000`
+    - (3) `[MASTER]` の `AutoComm=0`
+
+    ファイルの内容（読める範囲）:
+    ```
+    [MASTER]
+    ;; Master Instance Number
+    InstanceNum=1
+    ;; Automatic communication return
+    AutoComm=0
+    ;; Automatic communication return t…
+    AutoCommTimeout=50000
+    ;; Automatic communication return R…
+    AutoCommRetry=1
+
+    [BOARD_0]
+    ;; Bus cycle time in microseconds
+    BusCycleTime=1000
+    ;; Master clock multiplier to deter…
+    SlaveMultiplier=1
+    …
+    DcmMaxValidVal=3000
+
+    [BOARD_1]
+    BusCycleTime=1000
+    SlaveMultiplier=1MaxBusSlaves=256
+    CmdTimeout=30
+    CmdMaxRetries=5
+    MaxQueuedFrames=32
+    MaxSlaveCmdPerFrame=32
+    MaxSentQueuedFramesPerCyc=2
+
+    DcTimeout=15000
+    DcDevLimit=10
+    DcSettleTime=1000
+    DcTotalBurstLength=10000
+    DcBurstBulk=8
+
+    DcmCtlSetVal=500000
+    DcmCtlGain=3
+    DcmCtlDriftErrorGain=7
+    DcmMaxValidVal=3000
+
+    [BOARD_2]
+    BusCycleTime=1000
+    SlaveMultiplier=1
+    ```
+    （「SlaveMultiplier=1MaxBusSlaves=256」は画面で 2 行が重なって見えるもの。行末が切れたコメントは「…」とした。）
+
+e5aee508:
+  alt: 見出し「3-7. ENIファイル作成 [A]」
+
+a0b73385:
+  alt: 見出し「3-8. 自動起動の設定 [A]」
+
+1e801ad4:
+  alt: 3-8-1 INtime Node Management（Auto Load の追加、[A]）
+  text: |
+    「INtime Node Management」画面。③ 「Auto Load」タブ、④ 「追加」ボタンが赤丸で囲まれている。
+
+b119be95:
+  alt: 3-8-1 Auto Load アプリケーション設定（RTMC64-EC、[A]）
+  text: |
+    ダイアログ「Auto Load アプリケーション設定」。
+    - アプリケーション名(T): RTMC64-EC
+    - 参照先(F)フルパス指定: C:¥RTEC¥flash¥RTEC.rta
+    - 実行時引数(P): （空）
+    - チェック: 有効(E)、INIT(初期化完了)待機(I)、ユーザログイン待機(U)
+    - 依存関係(N): ACatProc、iWin32
+
+993c9070:
+  alt: 3-8-1 認証デーモンのアイコン（[A]）
+  text: |
+    タスクトレイの隠れたアイコン。認証デーモンのアイコン（青）が赤丸で囲まれている。
+
+6d1e6d37:
+  alt: 4-1 ROMSW 設定ソフトの画面
+  text: |
+    ウィンドウ「標準RTMC64-M3 ROMSW設定ソフト ( C:¥RT64M3¥rt64m3drv.ini )」。ファイル名欄と、ボタン: 基本、局設定、手動パルサ ジョイスティック、ファイルから読出、ファイルに保存、アップロード、ダウンロード、オプション、閉じる。
+
+9f26dabb:
+  alt: 4-1-3 タスクトレイの INtime アイコン
+  text: |
+    タスクトレイの隠れたアイコンを表示したところ。INtime のアイコン（黄色）と、通知領域を開く「∧」ボタンが赤丸で囲まれている。
+
+9e782702:
+  alt: 4-1-3 INtime のメニュー（Restart NodeA）
+  text: |
+    INtime のメニューで「Restart NodeA」（選択中）が赤丸で囲まれている。Stop NodeA は灰色。
+
+a0659064:
+  alt: 4-2 セッティングPCソフトの運転画面とエラー表示
+  text: |
+    セッティングPCソフトの運転画面（X、Y、Z、A、B、C、R、Q、T の位置はすべて 0.000）。画面右の欄が丸で囲まれ、その下に別ウィンドウ（エラーの一覧）が表示されている。細部は小さくて判読できず。
+
+ab2d090b:
+  alt: 4-2 バックアップの概念図
+  text: |
+    - 「セッティングPC」「PCアプリ」は「通信ライブラリ」を、「PLC」「C言語ソフト」は「共有メモリ(通信領域)」を経て、【INtime】の「パラメータ」と「運転プログラム」の両方を読み書きする
+    - 【INtime】の「パラメータ」と【Windows】の「ファイル(バックアップ) パラメータ」の間: 起動時読み出し（Windows → INtime）、自動バックアップ（INtime → Windows）、新規バックアップ無し
+    - 【INtime】の「運転プログラム」と【Windows】の「運転プログラム」の間: 起動時読み出し（Windows → INtime）、自動バックアップ、手動バックアップ（INtime → Windows）、バックアップ無し
+    - 【INtime】の「パラメータ」「運転プログラム」→「運転」
+    - 注記: バックアップ方式はROMSW設定で選択して下さい。「RTMC64-M3/EC ROMSW設定ソフト」(TB00-1042)<2-1.RTMC64で記憶している情報>を参照下さい。
+
+f986ee23:
+  alt: 4-2-2 セッティングPCソフトのメニュー（パラメータ）
+  text: |
+    ウィンドウ「標準RTMC64-M3 セッティングPCソフト ( C:¥RT64M3¥rt64m3drv.ini )」のメニュー: 運転、パラメータ（丸で囲み）、表示設定、バージョン情報、終了。
+
+e694afb3:
+  alt: 4-2-2 バックアップデータ初期化の画面
+  text: |
+    画面「バックアップデータ初期化」。ボタン: パラメータ初期化、プログラム初期化、全軸アブソポジション初期化、各軸アブソポジション設定（タスク0、X・Y・Z・A の入力欄、「各軸アブソポジション設定」ボタン）、マクロ変数初期化、位置決めポイントテーブル初期化、運転プログラムバックアップ、絶対値エンコーダオフセット（アップロード RTMC64-M3->win、ダウンロード win->RTMC64-M3）、位置決めポイントテーブルバックアップ、閉じる。
+
+ae894c94:
+  alt: 4-2-2 サーボパラメータの画面
+  text: |
+    画面「サーボパラメータ」。タスク0 の 第1軸(X)〜第4軸(A) の列に、INPOS幅、最高速度、補間加減速時定数、S字加減速、PTP時定数、PTP速度、JOG速度、+側ソフトリミット、-側ソフトリミット、原点復帰方向、原点距離、原点復帰速度 などの値が並ぶ。右側にボタン: ファイルから読出、ファイルに保存、アップロード RTMC64-M3->win、ダウンロード win->RTMC64-M3、編集前に戻す、閉じる。
+    値は小さくて判読しにくい。
+
+4b733f47:
+  alt: 「注意」の吹き出し
+
+1283123d:
+  alt: 4-3 通信設定の画面（共有メモリ）
+  text: |
+    画面「通信設定」。
+    - 通信形態: 共有メモリ
+    - INtime設定: ノード名 NodeA
+    - イーサネット設定（灰色）: IPアドレス 0.0.0.0、設定履歴
+    - 通信エラーログ: ログファイル名（空）、チェック: ログ無効、全てロギング、初期化/終了、データ送信、データ受信、コマンド、通信エラー(全て)、通信エラー(伝送)、通信リトライ
+    - ログファイルサイズ 5242880 [Byte]、ログファイル数 6 (1-100)
+    - ボタン: 設定、閉じる
+
+a39d7a1f:
+  alt: 4-3 セッティングPCソフト動作設定の画面
+  text: |
+    画面「セッティングPCソフト動作設定」。
+    - 運転プログラム設定: DNC送信データ長 8192、DNC実行開始データ長 16384、DNC運転プログラムタイプ（テクノコード / Gコード）、起動時編集プログラムタイプ（テクノコード / Gコード）
+    - 起動位置: X 0、Y 0、「現在位置取得」ボタン
+    - ボタン: 設定、編集前に戻す、閉じる
+
+c080be41:
+  alt: 4-3 ポジション表示形式設定の画面
+  text: |
+    画面「ポジション表示形式設定」。タスク0。第1軸〜第9軸の軸名称（X、Y、Z、A、B、C、R、Q、T）とパルス/表示単位（すべて 1000）。トルク情報 10、円弧処理 RTMC64-M3内部、円弧精度 1、運転プログラム小数点桁数 1000、補間送り速度単位 1 パルス/sec、X-Z円弧平面（XZ平面 / ZX平面）。
+    注記: 軸名称を変更しても運転プログラムの軸アドレスは変わりません。(X,Z,Y…R,Q,T のまま) セッティングPC/ROMSW設定ソフトの表示が変わるだけですので御注意下さい。
+    ボタン: 設定、編集前に戻す、閉じる。
+
+079b3776:
+  alt: 4-3 入出力表示設定の画面
+  text: |
+    画面「入出力表示設定」。左が入力、右が出力。それぞれ上にショートカット（Rio、+OT、-OT、DEO など / Task0〜Task7）、下に一覧（アドレス、チャンネル、標準信号名、ユーザー信号名。入力は Rio0000〜Rio0015、出力は Rio1856〜Rio1871 など）。ボタン: 設定、編集前に戻す、閉じる。
+    細部は小さくて判読しにくい。
+
+bd3c1d3d:
+  alt: 4-3 「注意」の吹き出しと注記
+  text: |
+    「設定」をクリックしないと反映されません。「設定」のクリックによって、INIファイル内の情報が更新されます。
+
+74a89824:
+  alt: 5-1 セッティングPCソフトのメニュー（表示設定）
+  text: |
+    ウィンドウ「標準RTMC64-M3 セッティングPCソフト ( C:¥RT64M3¥rt64m3drv.ini )」のメニュー: 運転、パラメータ、表示設定（丸で囲み）、バージョン情報、終了。
+
+33e28e70:
+  alt: 5-1 通信設定の画面（共有メモリ）
+  text: |
+    画面「通信設定」。通信形態: 共有メモリ、INtime設定のノード名 NodeA、イーサネット設定（灰色、IPアドレス 0.0.0.0）、通信エラーログ（チェックはすべて未選択）、ログファイルサイズ 5242880 [Byte]、ログファイル数 6 (1-100)。ボタン: 設定、閉じる。
+
+9b89fbce:
+  alt: 5-1 「注意」の吹き出しと注記
+  text: |
+    「設定」をしないと反映されません。「設定」によって、INIファイル内の情報が更新されます。
+
+b2d548ba:
+  alt: 5-2 イーサネット通信の構成
+  text: |
+    - FAPC の「RTMC64」に NIC2 と NIC1 がある
+    - NIC2 →「イーサネット」→ 別PC の NIC →「セッティングPC」
+    - NIC1 →「EtherCAT」→「EtherCAT スレーブ」が数珠つなぎ（…）
+
+2d2d3ee8:
+  alt: 5-2-1 タスクトレイの INtime アイコン
+  text: |
+    タスクトレイの隠れたアイコン。① INtime のアイコン（黄色）が赤丸で囲まれている。
+
+dd80e5e4:
+  alt: 5-2-1 INtime のメニュー（INtime Configuration）
+  text: |
+    INtime のメニューで ② 「INtime Configuration(C)」が赤丸で囲まれている。
+
+5e47af52:
+  alt: 5-2-1 INtime Device Manager（NIC を INtime へ移す・IRQなし/MSI）
+  text: |
+    「ネットワーク アダプター」の下の「Intel(R) PRO/1000 GT Desktop Adapter #3」を右クリックしたメニューで、「INtimeへ移す(IRQなし/MSI)(M)」が赤丸で囲まれている。
+
+0146c9e7:
+  alt: 5-2-1 INtime Device Manager（デバイス設定情報の保存）
+  text: |
+    ツールバーの「!」ボタン（ツールチップ「デバイス設定情報の保存」）が赤丸で囲まれている。
+
+77f53ab6:
+  alt: 5-2-1 INtime Device Manager（INtime へのパス完了後）
+  text: |
+    「INtime devices」→「NodeA」→「ネットワーク アダプター」の下に「INtime Intel(R) PRO/1000 GT Desktop Adapter #3」が表示されている。
+
+c2742a11:
+  alt: 5-2-2 タスクトレイの INtime アイコン
+  text: |
+    タスクトレイの隠れたアイコン。INtime のアイコン（黄色）が赤丸で囲まれている。
+
+66f334f1:
+  alt: 5-2-2 INtime のメニュー（INtime Configuration）
+  text: |
+    INtime のメニューで「INtime Configuration(C)」が赤丸で囲まれている。
+
+96fad67a:
+  alt: 5-2-2 INtime Node Management（Network タブ）
+  text: |
+    「INtime Node Management」画面。① 「Network」タブ、② 設定項目（ホスト名の行と思われる）の値、③ 「NIC 設定」の「ネットワークインターフェース(NIC)リスト」の行の「…」ボタンが赤丸で囲まれている。ほかの項目（Configuration、DNS、ルーティング設定など）の値は小さくて判読できず。
+
+0b4581cf:
+  alt: 5-2-2 NIC管理設定（追加）
+  text: |
+    画面「NIC管理設定」。一覧（Interface、Driver、インスタンス）は空。④ 「追加(A)」ボタンが赤丸で囲まれている。ほかのボタン: 編集(E)、上に移動(U)、下に移動(D)、削除(D)、OK、キャンセル(C)、ヘルプ(H)。
+
+dfb1114c:
+  alt: 5-2-2 NICプロパティ（インターフェース種類）
+  text: |
+    画面「NIC プロパティ - ie1g1」。⑤ インターフェース種類「Intel Gigabit, PCI/PCIe Ethernet (ie1g)」、⑥ インスタンス（値は判読できず）、⑦ 「IPv4 アドレス ネットマスク」の一覧の「追加」ボタンが赤丸で囲まれている。ほかに エイリアス(A)、DHCP有効(E)、割り込み使用（選択）、ポーリング使用、IPv6 アドレス プリフィクス長 の一覧。
+
+e4c27ed7:
+  alt: 5-2-2 IPv4 アドレス設定
+  text: |
+    画面「IPv4 アドレス設定」。⑧ IPv4アドレス 192.168.000.100、⑨ ネットマスク 255.255.255.0、⑩ 「OK」ボタンが赤丸で囲まれている。
+
+2d1f8301:
+  alt: 5-2-2 NICプロパティ（IPv4 アドレス追加後）
+  text: |
+    画面「NIC プロパティ - ie1g1」。インターフェース種類「Intel Gigabit, PCI/PCIe Ethernet (ie1g)」、インスタンス 1、割り込み使用。IPv4 アドレスの一覧に「192.168.0.100 255.255.255.0」。⑪ 「OK」ボタンが赤丸で囲まれている。
+
+80852aa7:
+  alt: 5-2-2 NIC管理設定（追加後）
+  text: |
+    画面「NIC管理設定」。一覧に Interface「ie1g1」、Driver「Intel Gigabit, PCI/PCIe Ethernet」、インスタンス「1」。⑫ 「OK」ボタンが赤丸で囲まれている。
+
+3ebfede7:
+  alt: 5-2-2 INtime Node Management（Network 設定の保存）
+  text: |
+    「INtime Node Management」画面の「Network」タブ。NIC リストの値に「ie1g1」が入っている。⑬ 「保存」ボタンが赤丸で囲まれている。ほかの値は小さくて判読できず。
+
+bd582890:
+  alt: 5-2-3 スタートメニューの「設定」
+  text: |
+    Windows のスタートメニュー（ドキュメント、ピクチャ、設定、電源）で、「設定」が赤丸で囲まれている。
+
+2c4a170a:
+  alt: 5-2-3 Windows の設定（ネットワークとインターネット）
+  text: |
+    Windows の「設定」画面で、「ネットワークとインターネット」（Wi-Fi、機内モード、VPN）が赤丸で囲まれている。ほかに システム、デバイス、電話、個人用設定、アプリ、アカウント、時刻と言語、ゲーム。
+
+9259edd9:
+  alt: 5-2-3 ネットワークの状態（アダプターのオプションを変更する）
+  text: |
+    「設定」の「状態」画面。「ネットワークの詳細設定」の「アダプターのオプションを変更する」が赤丸で囲まれている。
+
+5c2467ac:
+  alt: 5-2-3 ネットワーク接続（プロパティ）
+  text: |
+    「コントロール パネル > ネットワークとインターネット > ネットワーク接続」画面。「イーサネット」アダプターと、右クリックメニューの「プロパティ(R)」が赤丸で囲まれている。
+
+0e4cb548:
+  alt: 5-2-3 イーサネットのプロパティ（TCP/IPv4）
+  text: |
+    「イーサネット 2のプロパティ」画面（接続の方法: ASIX AX88179 USB 3.0 to Gigabit Ethernet Adapter）。項目一覧の「インターネット プロトコル バージョン 4 (TCP/IPv4)」と「プロパティ(R)」ボタンが赤丸で囲まれている。
+
+4618026e:
+  alt: 5-2-3 インターネット プロトコル バージョン 4 (TCP/IPv4) のプロパティ
+  text: |
+    「次の IP アドレスを使う」を選び、IP アドレス 192.168.0.200、サブネット マスク 255.255.255.0（赤丸で囲み）。デフォルト ゲートウェイと DNS サーバーは空。「OK」ボタンが赤丸で囲まれている。
+
+c95d45e4:
+  alt: 5-2-4 RT64EC Installer
+  text: |
+    ダイアログ「RT64EC Installer」。「インストールするフォルダを設定して下さい。」、フォルダ「c:¥Rt64ec」、ボタン: 参照、OK、キャンセル。
+
+4fea705b:
+  alt: 5-2-4 セッティングPCソフトのメニュー（表示設定）
+  text: |
+    ウィンドウ「標準RTMC64-M3 セッティングPCソフト ( C:¥RT64M3¥rt64m3drv.ini )」のメニュー: 運転、パラメータ、表示設定（丸で囲み）、バージョン情報、終了。
+
+2129cbe8:
+  alt: 5-2-4 通信設定の画面（イーサネット通信）
+  text: |
+    画面「通信設定」。
+    - 通信形態: イーサネット通信（切り替えの「< >」ボタンが赤丸で囲み）
+    - INtime設定（灰色）: ノード名 NodeA
+    - イーサネット設定: IPアドレス 192.168.0.100（赤丸で囲み）、設定履歴
+    - 通信エラーログ: チェックはすべて未選択、ログファイルサイズ 5242880 [Byte]、ログファイル数 6 (1-100)
+    - 「設定」ボタンが赤丸で囲まれている
+
+d4808ab8:
+  alt: 「注意」の吹き出し
+
+41857e90:
+  alt: 「設定」ボタンの絵
+
+218f9f7f:
+  alt: 5-3 セッティングPCソフトのメニュー（運転）
+  text: |
+    ウィンドウ「標準RTMC64-M3 セッティングPCソフト ( C:¥RT64M3¥rt64m3drv.ini )」のメニュー: 運転（丸で囲み）、パラメータ、表示設定、バージョン情報、終了。
+
+41a2ff61:
+  alt: 5-3 正しく動作しているときの運転画面
+  text: |
+    セッティングPCソフトの運転画面。上部に X、Y、Z、A、B、C、R、Q、T の位置（すべて 0.000）。下部の運転操作パネルに タスク選択（タスク0）、動作モード（自動運転）、プログラム情報（実行モード 自動運転、動作状態 プログラム実行待機、選択プログラム番号、実行ステップ番号）、Mコード、オーバライド（100）、送りモード（JOG、インチングx1000〜x1、手動原点復帰、自動原点復帰）、軸キー（X-/X+ 〜 T-/T+）、ボタン（スタート、ストップ、1ショット位置決め、原点設定、原点復帰、ホーム位置、リセット、閉じる）。
+
+2f1955b2:
+  alt: 5-3 通信ライブラリの初期化エラー
+  text: |
+    ダイアログ「Rt64m3drv」に警告アイコンと「通信ライブラリの初期化エラーです」、OK ボタン。
+
+4e329c84:
+  alt: 6 通信デバイスが初期化されていないエラー
+  text: |
+    ダイアログ「Rt64m3drv」に警告アイコンと「通信デバイスが初期化されていません。」、OK ボタン。
+
+8c2efa9d:
+  alt: 注意を促す亀の絵
+
+fc933457:
+  alt: 7-1 ROMSW 設定ソフトのアイコン（RTMC64-M3）
+
+febfe94a:
+  alt: 7-1 ROMSW 設定ソフトのアイコン（RTMC64-EC）
+
+2cf37e4e:
+  alt: 7-2 セッティングPCソフトのアイコン（RTMC64-M3）
+
+41817d7f:
+  alt: 7-2 セッティングPCソフトのアイコン（RTMC64-EC）
+
+4c90d5ba:
+  alt: 7-3 セッティングPCソフトの運転画面の構成
+  text: |
+    運転画面の各部の名前: 「メインメニュー」（上部のメニュー）、「位置表示」（X、Y、Z、A の位置）、「操作メニュー」（運転操作パネルのタブ）、「軸キー」（右側の X-/X+ などのボタン）、「操作ボタン」（下部のボタン列）。
+
+b1d7a49b:
+  alt: 7-3-2 1ショット位置決めの画面
+  text: |
+    画面「1ショット位置決め」。
+    - 位置決めのモード: インクレPTP（選択）、論理座標系アブソPTP、機械座標系アブソPTP、インクレ直線補間、論理座標系アブソ補間、機械座標系アブソ補間、SPIN(無限回転軸回転動作)、同期軸無視 インクレPTP、同期軸無視 論理アブソPTP、同期軸無視 機械アブソPTP（最後の 3 つは灰色）
+    - 移動量/目標位置: X、Y、Z、A（単位 パルス）、ほかの軸は灰色
+    - 補間速度: パルス/秒
+    - ボタン: 移動開始、移動再開、移動停止、閉じる
+
+c1b8d6a8:
+  alt: 注意を促す亀の絵
+
+67ce8405:
+  alt: 7-3-4 プログラム管理の画面
+  text: |
+    画面「プログラム管理」。ファイル名「C:¥RT64M3¥l_PTP.txt」。左にプログラムメモリ使用状況（BLK、TSK、PNO。BLK 0 は TSK 0・PNO 1、BLK 1 は TSK 0・PNO 10、ほかは --）。「タスク0(カレントタスク)」、Tコード（選択）/ Gコード。プログラム:
+    ```
+    PNO10;
+    /****************************/
+    /*  L_PTP.TXT              */
+    /****************************/
+    PTP X40000 Y20000;      /* (0,0)から、(40000,20000)へ
+    PTP X40000 Y-20000;     /* (40000,20000)から、(80000…
+    PTP X-40000 Y-20000;    /* (80000,0)から、(40000,-20…
+    PTP X-40000 Y20000;     /* (40000,-20000)から、(0,0)…
+    END;
+    ```
+    （行末のコメントは画面で切れている。）ボタン: 移動、コピー、削除、ファイルから読出、ファイルに保存、アップロード RTMC64-M3->win、ダウンロード win->RTMC64-M3、閉じる。
+
+a89aff6d:
+  alt: 7-3-5 X/Y軸の合成軌跡
+  text: |
+    軌跡表示ウィンドウ。青い線で、左端から右上へ上がり、水平に進み、右端へ下がる台形と、左端から右下へ下がり、水平に進み、右端へ上がる台形が描かれ、全体で六角形の軌跡になっている。
+
+4c01e366:
+  alt: 注意を促す亀の絵
+
+de34d553:
+  alt: 8-6 サーボアンプの局アドレス設定（S1・S2・S3）
+  text: |
+    サーボアンプ前面の絵。ロータリースイッチ S1、S2（0〜F）、DIP スイッチ S3（1〜4、ON）、7 セグメント表示 1 桁、端子。
+
+7085c21a:
+  alt: 8-6 サーボアンプの局アドレス設定（ID の MSD・LSD）
+  text: |
+    サーボアンプ前面の絵。7 セグメント表示 2 桁、LED（RUN、ERR、L/AIN、L/AOUT）、「ID」のロータリースイッチ MSD と LSD（0〜F）、コネクタ X7。
+
+27e57759:
+  alt: 8-6 サーボアンプの局アドレス設定（ADR の X10・X1）
+  text: |
+    サーボアンプ前面の絵。7 セグメント表示 2 桁、「ADR」のロータリースイッチ X10 と X1（0〜9）、コネクタ CN5。
+
+081c0dc9:
+  alt: 10-1 出荷リストサンプル（納品書／出荷表 RTMC-M3用）
+  text: |
+    「納品書／出荷表　ＲＴＭＣ－Ｍ３用」、出荷日 ２０１４年 □□月 □□日。
+    - 受注先: ＡＢＣ商事 株式会社 様
+    - ユーザ: ＤＥＦ工業 株式会社 様
+    - オーダーNO. ＴＨ００－０８□□□、注番: □□□-□□□、見積書: TB02-□□□□
+    - ソフトバージョン: 標準RTMC64-M3 Ｖｅｒｓｉｏｎ１．０．０Ａ
+    - 初回オーダー TH00-08□□□、前回オーダー TH00-08□□□、オーダー担当者、出荷担当者（空欄）
+    - 製品 内容: ★ボード「RTMC64-M3 [RTMC64M3_00*** ]」○ 数 1、「年間サポート（～　年　月迄） 出荷月から１年間」
+    - ソフト オプション 他:
+      - セッティングPC（初回のみ）(○)、アプリケーションライブラリ（初回のみ）(○)
+      - 加減速: 定時直線型補間加減速、Ｓ字補間加減速（定時直線型補間加減速に加えて）、補間前加減速
+      - 同期送り: 同期軸制御(同一指令制御)、手動パルサインターフェース
+      - 特殊指令: 高精度ラッチ（Ｇ３１／ＳＬＩＮ）、接線制御、直径指令（旋盤用）、ポイント位置決め
+      - 主軸制御: 主軸ＯＮ／ＯＦＦ、インバータ主軸
+      - 補正: ピッチエラー補正、工具長補正、工具径補正、高精度輪郭制御(形状補正)
+      - 付加機能: ＤＮＣ運転、マルチタスク、マクロ、プログラム逆行動作（PTP/LINのみ）、フレキシブル電子カム
+
+bd66b90b:
+  alt: 10-4-2 セッティングPCソフトのメニュー（バージョン情報）
+  text: |
+    ウィンドウ「標準RTMC64-M3 セッティングPCソフト ( C:¥RT64M3¥rt64m3drv.ini )」のメニュー: 運転、パラメータ、表示設定、バージョン情報（丸で囲み）、終了。
+
+c603cdb9:
+  alt: 10-4-2 バージョン情報（RTMC64-M3）
+  text: |
+    ダイアログ「バージョン情報(Rt64m3drv)」。標準RTMC64-M3運転ソフト。
+    - パッケージ: Version 1.3.0A（丸で囲み）
+    - セッティングPC Version 1.2.0、CommDLL Version 1.1.0、TcnvDLL Version 1.2.0、GcnvDLL Version 1.2.0
+    - ファームウェア(motion controller) Version 1.3.0
+    - シリアル番号: 29-00020、SUM(Flash): 0000
+    - Copyright (C) 2015-2016
+
+b37a4df5:
+  alt: 10-4-2 バージョン情報（RTMC64-EC）
+  text: |
+    「RTMC64-ECの場合」（改訂マーク ◆1.2）。ダイアログ「バージョン情報(Rt64ecdrv)」。標準RTMC64-EC運転ソフト。
+    - パッケージ: Version 1.2.0A（丸で囲み）
+    - セッティングPC Version 1.0.0、CommDLL Version 1.0.0、TcnvDLL Version 1.0.0、GcnvDLL Version 1.0.0
+    - ファームウェア(motion controller) Version 1.2.0
+    - シリアル番号: 30-00036、SUM(Flash): 0000
+    - Copyright (C) 2016

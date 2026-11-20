@@ -1,0 +1,83 @@
+# TB00-1040J（RTMC64 ユーザーズマニュアル メンテナンス編）の図の書き起こし
+# scripts/convert_pdf.py が変換時に、各図の直下へ「図の内容」として差し込む。
+# キー: 画像ファイル名 (image_NNNNNN_<hash>.png) のハッシュ値の先頭 8 桁
+# 縮小された画面で小さくて読めない箇所は「（判読できず）」とした。
+
+ff15e624:
+  alt: RTMC64 の動作状況アイコン（黄色）
+  text: |
+    タスクトレイの INtime のアイコン（黄色）。本文: (黄色): 待機中。
+
+09cadbf4:
+  alt: RTMC64 の動作状況アイコン（紫色）
+  text: |
+    タスクトレイの INtime のアイコン（紫色）。本文: (紫色): 運転中。
+
+e439cc17:
+  alt: 2-1 ping の正常な応答
+  text: |
+    コマンドプロンプトで `ping 192.168.0.100` を実行した画面。
+    ```
+    192.168.0.100 に ping を送信しています 32 バイトのデータ:
+    192.168.0.100 からの応答: バイト数 =32 時間 <1ms TTL=64   （4 回）
+    192.168.0.100 の ping 統計:
+        パケット数: 送信 = 4、受信 = 4、損失 = 0 (0% の損失)、
+    ラウンド トリップの概算時間 (ミリ秒):
+        最小 = 0ms、最大 = 0ms、平均 = 0ms
+    ```
+
+499c55b6:
+  alt: 2-1 インターフェースが存在しない場合の表示
+  text: |
+    ウィンドウ「RT I/O Console 0x36D0 - NodeA: Finished」に「ifconfig.rta: interface ie1g1 does not exist」と表示されている。
+
+12d81972:
+  alt: 2-1 INtime 側の Network インターフェース設定の表示
+  text: |
+    コマンドプロンプトで `piperta "%INTIME%network7\ifconfig"` を実行した画面。
+    - ie1g0: flags=8843<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST> metric 0 mtu 1500、ether 90:e2:ba:28:94:8d、inet 192.168.0.100 netmask 0xffffff00 broadcast 192.168.0.255、media: Ethernet autoselect、status: no carrier
+    - lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> metric 0 mtu 16384、inet 127.0.0.1 netmask 0xff000000
+    一部の行（inet6 など）は細かくて読みにくい。
+
+48aceac1:
+  alt: 2-1 Windows のネットワーク設定の表示
+  text: |
+    コマンドプロンプトで `ipconfig` を実行した画面。「イーサネット アダプター ローカル エリア接続 44:」はメディアが接続されていない。「イーサネット アダプター ローカル エリア接続 21:」は IPv4 アドレス 192.168.0.200、サブネット マスク 255.255.255.0。ほかのアダプターの情報が続く。
+
+0de76aa6:
+  alt: 3-1 一部の入力が不可の時の調査（チェック箇所）
+  text: |
+    - 「センサ」→ 中継端子台 →「入力ユニット」→【INtime】の「共有メモリ」→「RTMC64」→【Windows】の「セッティングPCソフト」の「入出力状態画面」。共有メモリには「PLC または C言語ソフト」もつながる
+    - チェック箇所: ※A（センサと中継端子台の間）、※B（中継端子台と入力ユニットの間）。「中継端子台 センサにLED等あれば ON/OFFチェック」
+    - 表: センサーが ON のとき入出力状態画面は A接 緑・B接 黒、OFF のとき A接 黒・B接 緑
+
+1182c7eb:
+  alt: 3-2 一部の出力が不可の時の調査（チェック箇所）
+  text: |
+    - 【Windows】の「セッティングPCソフト」の「入出力状態画面」→【INtime】の「RTMC64」→「共有メモリ」（「PLC または C言語ソフト」）→「出力ユニット」→ 中継端子台 →「ソレノイド、リレー等」
+    - チェック箇所: ※A、※B（中継端子台の前後）。「出力回路 ON/OFF状態」。「制御盤回路図」「機体配線図」
+
+23fd486f:
+  alt: 4-1-2 タスクトレイの INtime アイコン
+  text: |
+    タスクトレイの隠れたアイコンを表示したところ。INtime のアイコン（紫色）と、通知領域を開く「∧」ボタンが赤丸で囲まれている。
+
+95a2de87:
+  alt: 4-1-2 INtime のメニュー（Stop NodeA）
+  text: |
+    INtime のアイコンを右クリックしたメニュー: Start NodeA（灰色）、Stop NodeA（赤丸で囲み）、Restart NodeA、イベントビューワ(V)、INtime Explorer(E)、INtime Configuration(C)、イベント通知表示(S)、常駐アイコン自動起動(A)（チェックあり）、INtimeバージョン情報(B)、終了(X)。
+
+6b20269a:
+  alt: 4-1-3 RT64M3 Installer
+  text: |
+    ダイアログ「RT64M3 Installer」。「インストールするフォルダを設定して下さい。」、フォルダ「c:¥Rt64m3」、ボタン: 参照、OK、キャンセル。
+
+35367a6a:
+  alt: 4-1-3 タスクトレイの INtime アイコン（黄色）
+  text: |
+    タスクトレイの隠れたアイコンを表示したところ。INtime のアイコン（黄色）と、「∧」ボタンが赤丸で囲まれている。
+
+fc2318df:
+  alt: 4-1-3 INtime のメニュー（Restart NodeA）
+  text: |
+    INtime のアイコンを右クリックしたメニュー: Start NodeA、Stop NodeA（灰色）、Restart NodeA（選択中、赤丸で囲み）、イベントビューワ(V)、INtime Explorer(E)、INtime Configuration(C)、イベント通知表示(S)、常駐アイコン自動起動(A)（チェックあり）、INtimeバージョン情報(B)、終了(X)。
